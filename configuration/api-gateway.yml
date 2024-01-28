@@ -1,5 +1,7 @@
 server:
   port: 8082
+  
+spring:
   cloud:
     gateway:
       routes:
@@ -53,3 +55,4 @@ logging:
   level:
     org.springframework.cloud.gateway: trace
     org.springframework.cloud.gateway.route.RouteDefinitionLocator: info
+    
