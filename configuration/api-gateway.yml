@@ -1,0 +1,55 @@
+server:
+  port: 8082
+  cloud:
+    gateway:
+      routes:
+        ## USER SERVICE
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/bank-user/**
+        ## FUND TRANSFER SERVICE
+        - id: fund-service
+          uri: lb://fund-service
+          predicates:
+            - Path=/transfer/** # transfer
+        ## CORE BANKING SERVICE
+        - id: core-service
+          uri: lb://core-service
+          predicates:
+            - Path=/user/** , /transaction/** , /accounts/**  #/api/v1/user")/api/v1/transaction")/api/v1/accounts
+        ## UTILITY PAYMENTS SERVICE
+        - id: utility-payment-service
+          uri: lb://utility-payment-service
+          predicates:
+            - Path=/utility-payment/**
+        ## SERVICE DISCOVERY
+        - id: service-discovery
+          uri: http://localhost:8081
+          predicates:
+            - Path=/eureka/web
+          filters:
+            - SetPath=/
+
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka
+  instance:
+    hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    org.springframework.cloud.gateway: trace
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: info
