@@ -1,6 +1,11 @@
 server:
   port: 8081
 
+app:
+  config:
+    keycloak:
+      realm: Spring-cloud-client
+
 eureka:
   client:
     service-url:
