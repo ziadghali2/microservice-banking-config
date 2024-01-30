@@ -4,9 +4,11 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+      defaultZone: http://eureka:password@localhost:8081/eureka
     register-with-eureka: false
     fetch-registry: false
   instance:
     hostname: localhost
     prefer-ip-address: true
+  username: "${EUREKA_USERNAME:eureka}"
+  password: "${EUREKA_PASSWORD:password}"
