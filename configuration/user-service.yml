@@ -25,3 +25,11 @@ eureka:
 logging:
   level:
     org.springframework: info
+
+app:
+  config:
+    keycloak:
+      server-url: http://localhost:8181/auth
+      realm: Spring-cloud-client
+      clientId: Spring-cloud-client
+      client-secret: ON8PBvQPHlafnQSkF1OcPHGLhRD5vPrK
