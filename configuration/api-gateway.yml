@@ -2,6 +2,11 @@ server:
   port: 8082
   
 spring:
+  security:
+    oauth2:
+      resource server:
+        jwt:
+          issuer-uri: http://localhost:8181/realms/Spring-boot-banking
   cloud:
     gateway:
       routes:
@@ -32,6 +37,10 @@ spring:
             - Path=/eureka/web
           filters:
             - SetPath=/
+        - id: service-discovery-static
+          uri: http://localhost:8081
+          predicates:
+            - Path=/eureka/**
 
       discovery:
         locator:
@@ -55,4 +64,13 @@ logging:
   level:
     org.springframework.cloud.gateway: trace
     org.springframework.cloud.gateway.route.RouteDefinitionLocator: info
+
+
+app:
+  config:
+    keycloak:
+      server-url: http://localhost:8181/auth
+      realm: Spring-cloud-client
+      clientId: Spring-cloud-client
+      client-secret: ON8PBvQPHlafnQSkF1OcPHGLhRD5vPrK
     
