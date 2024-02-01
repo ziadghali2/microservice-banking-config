@@ -22,7 +22,7 @@ eureka:
     hostname: localhost
   client:
     service-url:
-      defaultZone: http://localhost:8081/eureka
+      defaultZone: http://eureka:password@localhost:8081/eureka
 
 logging:
   level:
