@@ -1,5 +1,6 @@
 server:
   port: 8070
+spring:
   jpa:
     database: h2
     database-platform: org.hibernate.dialect.H2Dialect
